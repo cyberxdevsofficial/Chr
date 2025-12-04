@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Wishes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Video Background -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="https://cdn.coverr.co/videos/coverr-christmas-lights-1234/1080p.mp4" type="video/mp4">
+  </video>
+
+  <!-- Christmas Music -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-jingle.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h1>🎄 Christmas Wishes 🎄</h1>
+    <p>Enter your name to send a Christmas wish to your friends!</p>
+    <form id="wishForm">
+      <input type="text" id="senderName" placeholder="Your Name" required>
+      <button type="submit">Send Wish</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>Created by Anuga Senithu</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('wishForm');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('senderName').value.trim();
+      if(name){
+        const url = `wish.html?sender=${encodeURIComponent(name)}`;
+        window.location.href = url;
+      }
+    });
+
+    // Play music on load (required for mobile browsers)
+    window.addEventListener('load', () => {
+      const music = document.getElementById('bgMusic');
+      music.play().catch(() => {});
+    });
+  </script>
+</body>
+</html>
